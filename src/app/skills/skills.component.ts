@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-skills',
   standalone: true,
-  imports:[CommonModule],
+  imports: [CommonModule],
   templateUrl: './skills.component.html',
   styles: [`
     .animate-fade-in-up {
@@ -16,11 +16,29 @@ import { Component } from '@angular/core';
 })
 export class SkillsComponent {
   skills = [
-    { name: 'Critical Care', description: 'Specialized in managing critically ill patients in ICU settings.' },
-    { name: 'Patient Education', description: 'Experienced in providing comprehensive health education to patients and families.' },
-    { name: 'Medication Administration', description: 'Proficient in safe and accurate medication administration and management.' },
-    { name: 'Emergency Response', description: 'Trained in rapid response and emergency situations.' },
-    { name: 'Electronic Health Records', description: 'Skilled in using various EHR systems for accurate documentation.' },
-    { name: 'Team Leadership', description: 'Experienced in leading nursing teams and coordinating patient care.' }
+    { 
+      name: 'Microsoft Office Suite', 
+      description: 'Proficient in Word, PowerPoint, and Excel for professional documentation and presentations' 
+    },
+    { 
+      name: 'Technical Adaptability', 
+      description: 'Extremely comfortable learning and working with new technologies quickly and efficiently' 
+    },
+    { 
+      name: 'Communication', 
+      description: 'Excellent written and verbal communication skills with strong interpersonal abilities' 
+    },
+    { 
+      name: 'Research & Analysis', 
+      description: 'Skilled in conducting comprehensive research, data analysis, and developing insightful perspectives' 
+    },
+    { 
+      name: 'Organizational Skills', 
+      description: 'Highly organized, motivated, and adept at managing multiple tasks with precision' 
+    },
+    { 
+      name: 'Media & Marketing', 
+      description: 'Experienced in social media marketing, content creation, and brand communication strategies' 
+    }
   ];
 }

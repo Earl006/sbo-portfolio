@@ -3,7 +3,7 @@
       <h2 class="text-3xl font-bold text-center mb-12 text-primary dark:text-primary-light">Skills & Specializations</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <div *ngFor="let skill of skills; let i = index" 
-             class="bg-white dark:bg-primary p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2"
+             class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2"
              [ngClass]="{'animate-fade-in-up': true, 'animation-delay-300': i % 3 === 1, 'animation-delay-600': i % 3 === 2}">
           <div class="flex items-center mb-4">
             <div class="w-12 h-12 bg-secondary text-white rounded-full flex items-center justify-center mr-4">
@@ -13,7 +13,7 @@
             </div>
             <h3 class="text-xl font-semibold text-primary dark:text-primary-light">{{skill.name}}</h3>
           </div>
-          <p class="text-gray-600 dark:text-gray-300">{{skill.description}}</p>
+          <p class="text-gray-600 dark:text-gray-400">{{skill.description}}</p>
         </div>
       </div>
     </div>
