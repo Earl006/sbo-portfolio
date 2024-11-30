@@ -1,0 +1,97 @@
+<section id="about" class="bg-primary-light dark:bg-primary-dark">
+  <div class="section-container max-w-6xl mx-auto px-6">
+    <h2 class="section-title">Unraveling Sabina: Beyond the Professional Facade</h2>
+    <div class="flex flex-wrap items-start">
+      <!-- Image section -->
+      <div class="w-full md:w-1/2 mb-10 md:mb-0">
+        <div class="sticky top-8">
+          <img src="/assets/srn-2.jpeg" 
+               alt="at work" 
+               class="rounded-lg shadow-xl object-cover w-full">
+        </div>
+      </div>
+      
+      <!-- Content section -->
+      <div class="w-full md:w-1/2 md:pl-10 ">
+        <div [class.expanded]="isExpanded" class="content-wrapper">
+          <!-- Preview content -->
+          <div class="preview-content" [class.fade-out]="!isExpanded">
+            <h3 class="text-2xl font-semibold mb-4">The Storyteller's Canvas 🎨</h3>
+            <p class="text-lg mb-6">Picture this: A curious soul with a camera in one hand and a pen in the other, navigating the vibrant world of media and communication. That's me – Sabina Kemunto Okemwa, a storyteller who believes every moment is a narrative waiting to be discovered.</p>
+            
+            <h3 class="text-2xl font-semibold mb-4">My Origin Story 🌱</h3>
+            <p class="mb-4">Born with an insatiable curiosity, I've always been that kid who asked too many questions and saw stories where others saw just scenes.</p>
+          </div>
+
+         <!-- Expandable content -->
+         <div class="expanded-content font-poppins" [class.hidden]="!isExpanded">
+          <h3 class="font-montserrat font-bold text-xl mb-4">The Creative Heartbeat 💓</h3>
+          <p class="mb-4">Journalism isn't just a profession for me – it's a calling. When I'm not crafting stories or editing videos, you'll find me:</p>
+          <ul class="list-disc pl-5 mb-6">
+            <li>Dreaming up film concepts</li>
+            <li>Diving deep into research that challenges societal narratives</li>
+            <li>Exploring the intricate layers of gender representation in media</li>
+          </ul>
+
+          <h3 class="font-montserrat font-bold text-xl mb-4">My Secret Superpowers 🦸‍♀️</h3>
+          <ul class="list-disc pl-5 mb-6">
+            <li>Turning complex data into compelling narratives</li>
+            <li>Multitasking like a human Swiss Army knife</li>
+            <li>Making Microsoft Office dance to my productivity rhythm</li>
+            <li>Finding humor and humanity in the most unexpected places</li>
+          </ul>
+
+          <h3 class="font-montserrat font-bold text-xl mb-4">The Personal Compass 🧭</h3>
+          <p class="mb-4">What drives me? A blend of professional ambition and personal passion. I'm about:</p>
+          <ul class="list-disc pl-5 mb-6">
+            <li>Creating meaningful connections</li>
+            <li>Amplifying voices that often go unheard</li>
+            <li>Challenging stereotypes</li>
+            <li>Learning something new every day</li>
+          </ul>
+
+          <h3 class="font-montserrat font-bold text-xl mb-4">The Journey Continues... 🚀</h3>
+          <p class="mb-4">"Every interaction is a story, every challenge an opportunity, and every day a chance to create something extraordinary."</p>
+        </div>
+      </div>
+
+        <button (click)="toggleContent()" 
+                class="bg-accent-green hover:bg-accent-red text-white font-bold py-3 px-6 rounded-full 
+                       transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110 mt-6">
+          {{ isExpanded ? 'Read Less' : 'Read More' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.content-wrapper {
+  position: relative;
+  max-height: 400px;
+  overflow: hidden;
+  transition: all 0.5s ease-out;
+}
+
+.content-wrapper.expanded {
+  max-height: none;
+}
+
+.preview-content {
+  position: relative;
+}
+
+.preview-content.fade-out::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  background: linear-gradient(transparent, var(--primary-dark));
+}
+
+.expanded-content.hidden {
+  display: none;
+}
+</style>
