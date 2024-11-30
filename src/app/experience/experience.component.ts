@@ -1,106 +1,33 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+// experience.component.ts
+import { CommonModule, DatePipe, TitleCasePipe } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 
 export interface ExperienceItem {
   title: string;
   place: string;
-  date: string;
+  startDate: string;
+  endDate: string;
   description: string[];
-  type: 'education' | 'experience';
+  type: 'education' | 'work';
 }
 
 @Component({
   selector: 'app-experience',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TitleCasePipe],
+  providers: [DatePipe],
   templateUrl: './experience.component.html',
- styleUrls: ['./experience.component.scss']
+  styleUrls: ['./experience.component.scss']
 })
-export class ExperienceComponent {
-  experiences: ExperienceItem[] = [
-    // Professional Experiences
-    {
-      title: 'Intern',
-      place: 'Mercy Corps',
-      date: 'October 2023 - April 2024',
-      description: [
-        'Assisted in scheduling and coordinating meetings',
-        'Helped maintain and organize records and databases',
-        'Prepared reports, proposals, and presentations',
-        'Gathered and analyzed performance and program data',
-        'Provided administrative support and participated in professional development'
-      ],
-      type: 'experience'
-    },
-    {
-      title: 'Credit Control Assistant',
-      place: 'Firch International Limited',
-      date: 'July 2022 - August 2023',
-      description: [
-        'Provided administrative support to finance team',
-        'Monitored overdue accounts and tracked payments',
-        'Updated customer databases and records',
-        'Prepared statements and reports for company accountant',
-        'Created and maintained payment procedures and policies'
-      ],
-      type: 'experience'
-    },
-    {
-      title: 'Writer, Sales & Marketing Representative',
-      place: 'Sunday Express Newspaper Limited',
-      date: 'January 2021 - December 2021',
-      description: [
-        'Discussed priorities with producers and news managers',
-        'Revised work to meet editor requirements',
-        'Analyzed press releases for article inclusion',
-        'Wrote and edited news stories',
-        'Researched and analyzed news developments'
-      ],
-      type: 'experience'
-    },
-    {
-      title: 'Public Information Intern',
-      place: 'Kenya Private Sector Alliance',
-      date: 'October - December 2019',
-      description: [
-        'Provided customer support via chat, email, and telephone',
-        'Studied customer interactions and collected feedback',
-        'Demonstrated knowledge of product lines and pricing',
-        'Kept detailed transaction records',
-        'Resolved customer issues and executed merchandising strategies'
-      ],
-      type: 'experience'
-    },
-    {
-      title: 'Social Media Intern',
-      place: 'The Standard Media Group',
-      date: 'May to August 2019',
-      description: [
-        'Assisted with social media marketing initiatives',
-        'Tracked social media campaigns',
-        'Created content calendars',
-        'Increased brand awareness through social platforms',
-        'Supported marketing team at live and online events'
-      ],
-      type: 'experience'
-    },
-    {
-      title: 'Communication Department Intern',
-      place: 'Department of Film Services',
-      date: 'April - June 2018',
-      description: [
-        'Worked in Production, Film Archive, and Lighting',
-        'Performed voice-over narrations',
-        'Assisted with video editing'
-      ],
-      type: 'experience'
-    },
+export class ExperienceComponent implements OnInit {
+  constructor(private datePipe: DatePipe) {}
 
-    // Education
+  experiences: ExperienceItem[] = [
     {
       title: 'Masters of Arts in Journalism and Mass Communication',
       place: 'Chuka University',
-      date: '2021 - November 2024',
+      startDate: '2021-09',
+      endDate: '2024-11',
       description: [
         'Completed comprehensive research on media studies',
         'Thesis: "Audience Perceptions of Gender Stereotypes in Selected Commercial Advertisements on Citizen Television, Kenya"',
@@ -109,9 +36,58 @@ export class ExperienceComponent {
       type: 'education'
     },
     {
+      title: 'Content Creator',
+      place: 'Mercy Corps',
+      startDate: '2023-04',
+      endDate: '2023-08',
+      description: [
+        'Created and edited videos for social media platforms',
+        'Developed engaging content strategies',
+        'Managed social media accounts and engagement'
+      ],
+      type: 'work'
+    },
+    {
+      title: 'Communication Intern',
+      place: 'Sunday Express',
+      startDate: '2022-06',
+      endDate: '2022-12',
+      description: [
+        'Assisted in content creation and editing',
+        'Conducted research for news articles',
+        'Participated in editorial meetings'
+      ],
+      type: 'work'
+    },
+    {
+      title: 'Intern',
+      place: 'Department of Film Services',
+      startDate: '2021-05',
+      endDate: '2021-08',
+      description: [
+        'Assisted in film production and editing',
+        'Learned video editing software and techniques',
+        'Collaborated with production teams'
+      ],
+      type: 'work'
+    },
+    {
+      title: 'Communication Intern',
+      place: 'The Standard Media Group',
+      startDate: '2019-05',
+      endDate: '2019-08',
+      description: [
+        'Gained hands-on experience in media production',
+        'Assisted in news gathering and reporting',
+        'Developed multimedia content'
+      ],
+      type: 'work'
+    },
+    {
       title: 'Bachelor of Arts in Journalism and Mass Communication',
       place: 'Chuka University',
-      date: '2015 - 2019',
+      startDate: '2015-09',
+      endDate: '2019-12',
       description: [
         'Comprehensive undergraduate program in media studies',
         'Developed strong journalism and communication skills',
@@ -122,7 +98,8 @@ export class ExperienceComponent {
     {
       title: 'Short Course in Film and TV Production',
       place: 'Africa Film And Television Talent Training Institute',
-      date: 'May to August 2017',
+      startDate: '2017-05',
+      endDate: '2017-08',
       description: [
         'Intensive training in film and television production techniques',
         'Gained practical skills in media production',
@@ -133,7 +110,8 @@ export class ExperienceComponent {
     {
       title: 'Kenya Certificate of Secondary Education (KCSE)',
       place: 'St. Joseph\'s Girl\'s High School',
-      date: '2011 - 2014',
+      startDate: '2011',
+      endDate:'2014',
       description: [
         'Completed secondary education',
         'Developed foundational academic and personal skills'
@@ -143,20 +121,59 @@ export class ExperienceComponent {
     {
       title: 'Kenya Certificate of Primary Education (KCPE)',
       place: 'Ortum Girl\'s Boarding Primary School',
-      date: '2010',
+      startDate: '2002',
+      endDate: '2010',
       description: [
         'Completed primary education',
         'Established strong educational foundation'
       ],
       type: 'education'
     }
+  
   ];
 
-  get sortedExperiences(): ExperienceItem[] {
-    return this.experiences.sort((a, b) => {
-      const yearA = parseInt(a.date.split('-')[0]);
-      const yearB = parseInt(b.date.split('-')[0]);
-      return yearB - yearA;
+  sortedExperiences: ExperienceItem[] = [];
+
+  ngOnInit() {
+    this.sortedExperiences = [...this.experiences].sort((a, b) => {
+      return new Date(b.endDate).getTime() - new Date(a.endDate).getTime();
     });
+  }
+
+  getFormattedDateRange(exp: ExperienceItem): string {
+    const startDate = new Date(exp.startDate);
+    const endDate = new Date(exp.endDate);
+    return `${startDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })} - 
+            ${endDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}`;
+  }
+  private extractYear(dateString: string): number {
+    return parseInt(dateString.split('-')[0]);
+  }
+  formatDateRange(dateString: string): string {
+    // Handle different date format variations
+    const parts = dateString.split('-');
+    
+    if (parts.length === 1) {
+      // Just a year
+      return parts[0];
+    }
+
+    if (parts.length === 2) {
+      // Year and month or start-end years
+      if (parts[0].length === 4 && parts[1].length === 2) {
+        // Convert YYYY-MM to a formatted date
+        try {
+          const date = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1);
+          return this.datePipe.transform(date, 'MMM yyyy') || dateString;
+        } catch {
+          return dateString;
+        }
+      }
+      // If it's a year range
+      return `${parts[0]} - ${parts[1]}`;
+    }
+
+    // If more complex, return as is
+    return dateString;
   }
 }

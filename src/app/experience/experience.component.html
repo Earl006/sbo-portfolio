@@ -33,7 +33,7 @@
                                                            'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' }}">
                     {{exp.type | titlecase}}
                   </span>
-                  <span class="text-sm text-gray-500 dark:text-gray-400">{{exp.date}}</span>
+                  <span class="text-sm text-gray-500 dark:text-gray-400">{{formatDateRange(exp.startDate)}} - {{formatDateRange(exp.endDate)}}</span>
                 </div>
                 
                 <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">{{exp.title}}</h3>
