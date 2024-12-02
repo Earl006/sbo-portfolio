@@ -67,8 +67,8 @@ export class ExperienceComponent implements OnInit {
       description: [
         'Assisted in film production and editing',
         'Learned video editing software and techniques',
-        'Collaborated with production teams'
-      ],
+        'Collaborated with production teams with voice over and narration'
+        ],
       type: 'work'
     },
     {

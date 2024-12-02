@@ -2,79 +2,62 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FileFilterPipe } from '../file-filter.pipe';
+import { SafeUrlPipe } from '../pipes/safe-url.pipe';
 
 interface Project {
   name: string;
-  type: 'pdf' | 'pptx';
-  path: string;
-  icon: string;
+  type: 'pdf' | 'pptx' | 'video';
+  path?: string;
+  icon?: string;
+  thumbnail?: string;
+  videoUrl?: string;
 }
 
 @Component({
   selector: 'app-testimonials',
   standalone: true,
-  imports: [CommonModule, FileFilterPipe],
+  imports: [CommonModule, FileFilterPipe, SafeUrlPipe],
   templateUrl: './testimonials.component.html',
 })
 export class TestimonialsComponent implements OnInit {
   projects: Project[] = [];
+  selectedVideo: Project | null = null;
 
   ngOnInit() {
     this.projects = [
+      // Video files
+      // Video projects
+      {
+        name: 'Campus Antics',
+        type: 'video',
+        thumbnail: 'https://img.youtube.com/vi/gQTPdpPSZpk/hqdefault.jpg',
+        videoUrl: 'https://www.youtube.com/embed/gQTPdpPSZpk?si=t1KyikPzif4uKgre', // Replace with your video URL
+      },
       // PDF files
       {
-        name: 'Abstract: African Cultural Aspect',
+        name: 'FHSS Conference ABSTRACT',
         type: 'pdf',
-        path: '/assets/ABSTRACT OF VEDIO ON AFRICAN CULTURAL ASPECT.pdf',
+        path: '/assets/FHSS Conference ABSTRACT.pdf',
         icon: 'pdf'
       },
       {
-        name: 'Abstract: Challenges Facing Society',
+        name: 'AUDIENCE PERCEPTIONS OF GENDER STEREOTYPES IN SELECTED COMMERCIAL ADVERTISEMENTS ON CITIZEN TELEVISION, KENYA',
         type: 'pdf',
-        path: '/assets/ABSTRACT OF VEDIO ON CHALLENGES FACING SOCIETY.pdf',
+        path: '/assets/AUDIENCE PERCEPTIONS OF GENDER STEREOTYPES IN SELECTED COMMERCIAL ADVERTISEMENTS ON CITIZEN TELEVISION, KENYA.pdf',
         icon: 'pdf'
       },
-      {
-        name: 'Abstract: Innovation',
-        type: 'pdf',
-        path: '/assets/ABSTRACT OF VEDIO ON INNOVATION.pdf',
-        icon: 'pdf'
-      },
-      {
-        name: 'Autobiography Essay',
-        type: 'pdf',
-        path: '/assets/AUTOBIOGRAPHY ESSAY.pdf',
-        icon: 'pdf'
-      },
-      {
-        name: 'Photographic Essay',
-        type: 'pdf',
-        path: '/assets/PHOTOCGRAPHIC ESSAY.pdf',
-        icon: 'pdf'
-      },
+      
       // PPTX files
       {
-        name: 'African Culture Presentation',
+        name: 'KEMUNTO OKEMWA Final Graduate Defense 2024',
         type: 'pptx',
-        path: '/assets/docs/AFRICAN CULTURE POWERPOINT.pptx',
+        path: '/assets/docs/KEMUNTO OKEMWA Final Graduate Defense 2024.pptx',
         icon: 'pptx'
       },
       {
-        name: 'Autobiography Essay Presentation',
+        name: 'OKEMWA KEMUNTO SABINA PRESENTATION',
         type: 'pptx',
-        path: '/assets/docs/AUTOBIOGRAPHY ESSAY POWERPOINT.pptx',
-        icon: 'pptx'
-      },
-      {
-        name: 'Innovation Presentation',
-        type: 'pptx',
-        path: '/assets/docs/INNOVATION POWERPOINT.pptx',
-        icon: 'pptx'
-      },
-      {
-        name: 'Professional Relevant Platforms',
-        type: 'pptx',
-        path: '/assets/docs/PROFFESIONAL RELEVANT PLATFORMS.pptx',
+        path: '/assets/docs/OKEMWA KEMUNTO SABINA PRESENTATION 1.pptx',
         icon: 'pptx'
       }
     ];
@@ -83,6 +66,8 @@ export class TestimonialsComponent implements OnInit {
   previewFile(project: Project) {
     if (project.type === 'pdf') {
       window.open(project.path, '_blank');
+    } else if (project.type === 'video') {
+      this.selectedVideo = project;
     } else {
       // For PPTX, trigger download as preview isn't supported
       this.downloadFile(project);
@@ -90,9 +75,13 @@ export class TestimonialsComponent implements OnInit {
   }
 
   downloadFile(project: Project) {
+    if (!project.path) return;
     const link = document.createElement('a');
     link.href = project.path;
     link.download = project.name + '.' + project.type;
     link.click();
+  }
+  closeVideoModal() {
+    this.selectedVideo = null;
   }
 }

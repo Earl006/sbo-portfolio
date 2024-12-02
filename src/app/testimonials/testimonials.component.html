@@ -1,56 +1,98 @@
-<!-- projects.component.html -->
 <section id="projects" class="py-20 bg-primary-light dark:bg-primary-dark">
   <div class="container mx-auto px-6">
-    <h2 class="text-3xl font-bold text-center mb-12 text-primary dark:text-primary-light">Projects</h2>
-    
-    <!-- PDF Section -->
-    <h3 class="text-2xl font-bold text-primary dark:text-primary-light mb-6">Documents</h3>
+    <h2 class="text-3xl font-bold text-center mb-12 text-primary dark:text-primary-light">Featured Work</h2>
+
+    <!-- Productions Section -->
+    <h3 class="text-2xl font-bold text-primary dark:text-primary-light mb-6">Productions</h3>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-      <div *ngFor="let project of projects | filter:'pdf'" 
-           class="bg-white dark:bg-primary p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform">
-        <div class="flex justify-center mb-4">
-          <svg class="w-16 h-16 text-red-600" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 16H8V8h4v8zm2 0V8h4v8h-4zm6-12H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 18H4V6h16v16z"/>
-          </svg>
-        </div>
-        <h3 class="text-xl font-semibold text-center mb-4 dark:text-white">{{project.name}}</h3>
-        <div class="flex justify-center space-x-4">
-          <button (click)="previewFile(project)" 
-                  class="p-2 rounded-full bg-accent-green hover:bg-accent-red transition-colors">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-            </svg>
-          </button>
-          <button (click)="downloadFile(project)" 
-                  class="p-2 rounded-full bg-accent-green hover:bg-accent-red transition-colors">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-            </svg>
-          </button>
+      <div *ngFor="let project of projects | filter:'video'" 
+           class="relative group cursor-pointer"
+           (click)="previewFile(project)">
+        <div class="overflow-hidden bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg transform group-hover:scale-105 transition-transform duration-300">
+          <!-- Wrapper for image and overlay -->
+          <div class="relative">
+            <img [src]="project.thumbnail" [alt]="project.name" class="w-full h-48 object-cover">
+            <!-- Play Icon Overlay -->
+            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100
+                        bg-black bg-opacity-50 transition-opacity duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve">
+
+                          <defs>
+                          </defs>
+                          <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(85.36653696498055 85.36653696498053) scale(0.94 0.94)" >
+                            <path d="M 45 90 C 20.187 90 0 69.813 0 45 c 31.16 -8.812 61.257 -9.555 90 0 C 90 69.813 69.813 90 45 90 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(187,26,26); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                            <path d="M 45 0 C 20.187 0 0 20.187 0 45 h 90 C 90 20.187 69.813 0 45 0 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(221,34,34); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                            <path d="M 63.885 47.325 l -14.816 8.554 l -14.816 8.554 c -1.79 1.033 -4.026 -0.258 -4.026 -2.325 V 45 c 10.606 -4.196 22.359 -3.855 35 0 C 65.227 45.904 64.78 46.808 63.885 47.325 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(240,240,240); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                            <path d="M 63.885 42.675 l -14.816 -8.554 l -14.816 -8.554 c -1.79 -1.033 -4.026 0.258 -4.026 2.325 V 45 h 35 C 65.227 44.096 64.78 43.192 63.885 42.675 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                          </g>
+                          </svg>
+            </div>
+          </div>
+        
+        <h3 class="text-xl font-semibold text-center mt-4 dark:text-gray-400">{{project.name}}</h3>
         </div>
       </div>
     </div>
 
-    <!-- PPTX Section -->
-    <h3 class="text-2xl font-bold text-primary dark:text-primary-light mb-6">Presentations</h3>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div *ngFor="let project of projects | filter:'pptx'"
-           class="bg-white dark:bg-primary p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform">
-        <div class="flex justify-center mb-4">
-          <svg class="w-16 h-16 text-orange-600" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/>
-          </svg>
-        </div>
-        <h3 class="text-xl font-semibold text-center mb-4 dark:text-white">{{project.name}}</h3>
-        <div class="flex justify-center space-x-4">
-          <button (click)="downloadFile(project)" 
-                  class="p-2 rounded-full bg-accent-green hover:bg-accent-red transition-colors">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-            </svg>
-          </button>
-        </div>
+     <!-- PDF Section -->
+     <h3 class="text-2xl font-bold text-gray-800 dark:text-primary-light mb-6">Documents</h3>
+     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+       <div *ngFor="let project of projects | filter:'pdf'" 
+            class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform">
+         <div class="flex justify-center mb-4">
+           <svg class="w-16 h-16 text-red-600" fill="currentColor" viewBox="0 0 24 24">
+             <path d="M12 16H8V8h4v8zm2 0V8h4v8h-4zm6-12H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 18H4V6h16v16z"/>
+           </svg>
+         </div>
+         <h3 class="text-xl font-semibold text-center mb-4 dark:text-gray-400">{{project.name}}</h3>
+         <div class="flex justify-center space-x-4">
+           <button (click)="previewFile(project)" 
+                   class="p-2 rounded-full bg-accent-green hover:bg-accent-red transition-colors">
+             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+             </svg>
+           </button>
+           <button (click)="downloadFile(project)" 
+                   class="p-2 rounded-full bg-accent-green hover:bg-accent-red transition-colors">
+             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+             </svg>
+           </button>
+         </div>
+       </div>
+     </div>
+ 
+     <!-- PPTX Section -->
+     <h3 class="text-2xl font-bold text-primary dark:text-primary-light mb-6">Presentations</h3>
+     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+       <div *ngFor="let project of projects | filter:'pptx'"
+            class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform">
+         <div class="flex justify-center mb-4">
+           <svg class="w-16 h-16 text-orange-600" fill="currentColor" viewBox="0 0 24 24">
+             <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/>
+           </svg>
+         </div>
+         <h3 class="text-xl font-semibold text-center mb-4 dark:text-gray-400">{{project.name}}</h3>
+         <div class="flex justify-center space-x-4">
+           <button (click)="downloadFile(project)" 
+                   class="p-2 rounded-full bg-accent-green hover:bg-accent-red transition-colors">
+             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+             </svg>
+           </button>
+         </div>
+       </div>
+     </div>
+  </div>
+
+  <!-- Video Modal Overlay -->
+  <div *ngIf="selectedVideo" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+    <div class="relative bg-white dark:bg-gray-800 rounded-lg overflow-hidden w-11/12 md:w-3/4 lg:w-1/2">
+      <button (click)="closeVideoModal()" class="absolute top-4 right-4 text-white text-2xl font-bold">&times;</button>
+      <iframe [src]="selectedVideo.videoUrl || '' | safeUrl" class="w-full h-64 md:h-96" frameborder="0" allowfullscreen></iframe>
+      <div class="p-4">
+        <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-white">{{ selectedVideo.name }}</h3>
       </div>
     </div>
   </div>
